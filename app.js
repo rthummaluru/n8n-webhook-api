@@ -1,6 +1,6 @@
 import express from "express";
 import axios from "axios";
-import { resumeSchema } from "./resumeModel.js";
+import resumeSchema from "./resumeModel.js";
 
 const app = express();
 app.use(express.json());
@@ -17,7 +17,7 @@ app.post("/submit-resume", async (req, res) => {
     // Forward to n8n webhook
     const response = await axios.post(
       "https://layerland.app.n8n.cloud/webhook-test/resume-submission",
-      resume
+      resumeSchema
     );
 
     res.status(200).json({ message: "Resume submitted successfully", data: response.data });
