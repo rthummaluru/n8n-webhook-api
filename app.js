@@ -17,7 +17,8 @@ app.post("/submit-resume", async (req, res) => {
     // Forward to n8n webhook
     const response = await axios.post(
       "https://layerland.app.n8n.cloud/webhook-test/resume-submission",
-      resumeSchema
+      resume,
+      { headers: { "Content-Type": "application/json" } }
     );
 
     res.status(200).json({ message: "Resume submitted successfully", data: response.data });
